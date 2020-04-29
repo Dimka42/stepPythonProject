@@ -16,3 +16,10 @@ class ProductPage(BasePage):
         expected_name = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE)
         real_name = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE_CHECK)
         assert expected_name.text == real_name.text, f"Expected Плохой текст, real result {real_name.text}"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.PRODUCT_NAME_CHECK), \
+            "Success message is presented, but should not be"
+
+    def should_disappeared_message(self):
+        assert self.is_disappeared(*ProductPageLocators.PRODUCT_NAME_CHECK)
